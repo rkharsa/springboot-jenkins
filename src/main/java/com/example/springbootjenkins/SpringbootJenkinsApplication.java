@@ -9,12 +9,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Slf4j
 public class SpringbootJenkinsApplication {
 
-    @Value("${server.port}")
-    private static Integer serverPort;
-    public static void main(String[] args) {
 
-        log.info(serverPort.toString());
+    public static void main(String[] args) {
         SpringApplication.run(SpringbootJenkinsApplication.class, args);
+
     }
+
 
 }
