@@ -17,7 +17,7 @@ pipeline {
                 sh 'mvn  clean install'
             }
         }
-          }
+
 
             post {
                 // If Maven was able to run the tests, even if some of the test
@@ -28,6 +28,7 @@ pipeline {
                 }
             }
         }
+    }
          stage('Deploy') {
          when{
              branch "master"
