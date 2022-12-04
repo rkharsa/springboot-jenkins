@@ -1,12 +1,19 @@
 package com.example.springbootjenkins;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@Slf4j
 public class SpringbootJenkinsApplication {
 
+    @Value("${server.port}")
+    private static Integer serverPort;
     public static void main(String[] args) {
+
+        log.info(serverPort.toString());
         SpringApplication.run(SpringbootJenkinsApplication.class, args);
     }
 
