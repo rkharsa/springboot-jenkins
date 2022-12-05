@@ -46,7 +46,7 @@ pipeline {
             }
         }
 
-        stage('Deploy ${ENV_NAME}') {
+        stage('Deploy ') {
              when{
                  branch "main"
              }
