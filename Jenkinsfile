@@ -18,13 +18,14 @@ pipeline {
                  }
             }
             steps{
+                echo ${ENV_NAME}
                 sh "mvn test"
             }
             post{
                   junit '**/target/surefire-reports/TEST-*.xml'
             }
         }
-        stage('Build prod') {
+        stage('Build') {
             when {
                   anyOf {
                                     branch 'main';
@@ -33,7 +34,7 @@ pipeline {
             }
             steps {
                  configFileProvider(
-                        [configFile(fileId: '8eea3d0f-8ad1-4a2e-92cd-ad5708448769', targetLocation: 'src/main/resources/application.properties')]) {
+                        [configFile(fileId: ${FILE_ID}, targetLocation: 'src/main/resources/application.properties')]) {
                         sh 'mvn  clean package -DskipTests '
                  }
             }
@@ -47,9 +48,12 @@ pipeline {
         }
 
         stage('Deploy ') {
-             when{
-                 branch "main"
-             }
+              when{
+                          anyOf {
+                             branch 'main';
+                             branch 'release'
+                          }
+              }
             steps {
                 sh "ls"
             }
