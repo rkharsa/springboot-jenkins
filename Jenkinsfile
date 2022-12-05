@@ -18,7 +18,7 @@ pipeline {
                  }
             }
             steps{
-                echo ${ENV_NAME}
+                echo "${ENV_NAME}"
                 sh "mvn test"
             }
             post{
@@ -36,7 +36,7 @@ pipeline {
             }
             steps {
                  configFileProvider(
-                        [configFile(fileId: ${FILE_ID}, targetLocation: 'src/main/resources/application.properties')]) {
+                        [configFile(fileId: "${FILE_ID}", targetLocation: 'src/main/resources/application.properties')]) {
                         sh 'mvn  clean package -DskipTests '
                  }
             }
