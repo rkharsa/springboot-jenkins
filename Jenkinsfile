@@ -13,7 +13,7 @@ pipeline {
         stage('Test') {
             when{
                  anyOf {
-                    branch 'main';
+                    branch 'main'
                     branch 'release'
                  }
             }
@@ -22,7 +22,9 @@ pipeline {
                 sh "mvn test"
             }
             post{
+             success {
                   junit '**/target/surefire-reports/TEST-*.xml'
+                  }
             }
         }
         stage('Build') {
@@ -50,7 +52,7 @@ pipeline {
         stage('Deploy ') {
               when{
                           anyOf {
-                             branch 'main';
+                             branch 'main'
                              branch 'release'
                           }
               }
